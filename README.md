@@ -156,7 +156,7 @@ npm run migrate-down # down the migrations
 npm run dev # run the application
 ```
 
-## Tests passed
+## Tests passed ✅
 
 ## Logs
 
