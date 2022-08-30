@@ -1,9 +1,10 @@
 
 ## Logs
 
-- [x] Signup
-- [ ] Login
-- [ ] accept/reject order
-- [x] create order
-- [x] get user order
-- [x] add product to order
+- [x] :rocket: Signup
+- [ ] :rocket: Login
+- [x] :rocket: accept/reject order
+- [x] :rocket: create order
+- [x] :rocket: get user order
+- [x] :rocket: add product to order
+- [ ] :rocket: setup testing
