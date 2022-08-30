@@ -39,7 +39,6 @@ describe("Order Model Operations", () => {
     }
     beforeAll(async () => {
         const { token, createdUser } = await authController.create(user);
-        console.log(token, createdUser);
         const productCreated = await productController.createProduct(product);
     })
 

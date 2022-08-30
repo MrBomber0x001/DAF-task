@@ -2,8 +2,9 @@
 
 DAF backend coding task.
 
-:one: The applicaiton is **unit** and **integration** testing using jasmine
+:one: The applicaiton is **unit** and **integration** tested using jasmine <br>
 :two: The application is built on top of `NodeJs`, `Express`, and `PostgreSQL`, I've not used any ORM, it's a pure raw sql.
+:three: Login/Signup are using JWT authentication
 
 ## project structure
 
@@ -160,7 +161,7 @@ npm run dev # run the application
 ## Logs
 
 - [x] :rocket: Signup
-- [ ] :rocket: Login
+- [x] :rocket: Login
 - [x] :rocket: accept/reject order
 - [x] :rocket: create order
 - [x] :rocket: get user order

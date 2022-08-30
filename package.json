@@ -4,11 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": " set ENV=test && db-migrate up --config ./database.json -e test && npm run jasmine && db-migrate reset",
-    "migrate": "db-migrate --env test up && db-migrate up",
+    "test": " set ENV=test && npm run migrate-test && npm run jasmine && db-migrate reset",
+    "migrate-test": "db-migrate --env test up && db-migrate up",
+    "migrate-dev": "db-migrate up",
     "jasmine": "jasmine",
-    "dev": "nodemon src/app.js",
-    "migrate-down": "db-migrate down -c 5"
+    "dev": "npm run migrate-dev && nodemon src/app.js",
+    "migrate-down": "db-migrate down -c 5 -e test"
   },
   "repository": {
     "type": "git",

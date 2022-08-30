@@ -24,16 +24,28 @@ module.exports = class Auth {
 
     async authenticate(email, password) {
         try {
-            const conn = await Client.connect()
-            const sql = `SELECT id FROM users where email=($1)`;
+            const conn = await Client.connect();
+            const sql = 'SELECT password, id FROM users WHERE email=($1)';
             const result = await conn.query(sql, [email]);
-            const userId = result.rows[0].id
-            const token = signToken(userId);
+            if (result.rows.length > 0) {
+                console.log("inside result.rows");
+                let user = result.rows[0];
+                const isValid = bcrypt.compareSync(password, user.password);
+                if (isValid) {
+                    console.log("inside isValid");
+                    const userId = user.id;
+                    const token = signToken(userId);
+                    user = await conn.query("SELECT * FROM users where id=($1)", [userId]);
+                    conn.release();
+                    return { user: user.rows[0], token };
+                }
+            }
+            conn.release();
+            return null
         } catch (error) {
             throw new Error(error);
         }
     }
-
     async checkExistance(email) {
         try {
             const conn = await Client.connect();

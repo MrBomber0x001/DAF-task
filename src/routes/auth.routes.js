@@ -30,16 +30,10 @@ const login = async (req, res, next) => {
 
     const { email, password } = req.body;
     try {
-        const doesExist = authController.checkExistance(email);
-        if (!doesExist) {
-            return res.status(404).json({ success: false, message: "User does not exist!" });
-        }
-
-        const isValidPassword = authController.checkValidation(password);
-        if (!isValidPassword) {
-            return res.status(400).json({ success: false, message: "Invalid Email/Password" })
-        }
-        const token = authController.authenticate(email, password);
+        const { user, token } = await authController.authenticate(email, password);
+        console.log(token);
+        console.log(user);
+        return res.status(200).json({ success: true, token, user });
     } catch (error) {
         return res.status(400).json({ success: false, message: error.message });
     }
