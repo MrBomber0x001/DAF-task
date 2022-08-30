@@ -6,6 +6,6 @@ CREATE TABLE "users_orders" (
 );
 
 
-ALTER TABLE "users_orders" ADD FOREIGN KEY ("user_id") REFERENCES "users" ("id");
+ALTER TABLE "users_orders" ADD FOREIGN KEY ("user_id") REFERENCES "users" ("id") ON DELETE CASCADE;
 
-ALTER TABLE "users_orders" ADD FOREIGN KEY ("order_id") REFERENCES "orders" ("id");
+ALTER TABLE "users_orders" ADD FOREIGN KEY ("order_id") REFERENCES "orders" ("id") ON DELETE CASCADE;

@@ -4,8 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "npm run start:dev && jasmine",
-    "start:dev": "nodemon ./src/app.js"
+    "test": " set ENV=test && db-migrate up --config ./database.json -e test && npm run jasmine && db-migrate reset",
+    "migrate": "db-migrate --env test up && db-migrate up",
+    "jasmine": "jasmine",
+    "dev": "nodemon src/app.js",
+    "migrate-down": "db-migrate down -c 5"
   },
   "repository": {
     "type": "git",

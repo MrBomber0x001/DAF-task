@@ -15,7 +15,7 @@ module.exports = class Auth {
             conn.release();
             const userId = createdUser.id
             const token = signToken(userId)
-            return { undefined, token, createdUser }
+            return { token, createdUser }
 
         } catch (error) {
             throw new Error(`Unable to register user ${error}`)

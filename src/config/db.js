@@ -2,28 +2,25 @@ const { Pool } = require("pg")
 const dotenv = require('dotenv');
 dotenv.config();
 
-const { POSTGRES_HOST, POSTGRES_DB, POSTGRES_USER, POSTGRES_PASSWORD, ENV, POSTGRES_TEST_DB } = process.env;
+const { POSTGRES_HOST, POSTGRES_DB, POSTGRES_USER, POSTGRES_PASSWORD, ENV } = process.env;
+console.log(`ENV ${ENV}`);
 
-let Client = new Pool({
-    host: "localhost",
-    user: "daf_user",
-    password: "password123",
-    database: "daf"
-});
-// if (ENV === 'dev') {
-//     Client = new Pool({
-//         host: "localhost",
-//         user: "daf_user",
-//         password: "password123",
-//         database: "DAF"
-//     })
-// } else if (ENV === 'test') {
-//     Client = new Pool({
-//         host: "localhost",
-//         user: "daf_user",
-//         password: "password123",
-//         database: "DAF_test"
-//     })
-// }
+if (ENV === 'test') {
+    Client = new Pool({
+        host: POSTGRES_HOST,
+        user: POSTGRES_USER,
+        password: POSTGRES_PASSWORD,
+        database: POSTGRES_TEST_DB
+    })
+} else {
+    Client = new Pool({
+        host: POSTGRES_HOST,
+        user: POSTGRES_USER,
+        password: POSTGRES_PASSWORD,
+        database: POSTGRES_DB
+    })
+}
+
+
 
 module.exports = Client;

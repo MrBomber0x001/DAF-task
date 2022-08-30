@@ -1,3 +1,10 @@
+## Intro
+
+DAF backend coding task.
+
+:one: The applicaiton is **unit** and **integration** testing using jasmine
+:two: The application is built on top of `NodeJs`, `Express`, and `PostgreSQL`, I've not used any ORM, it's a pure raw sql.
+
 ## project structure
 
 ```
@@ -76,16 +83,16 @@ CREATE USER daf_user WITH PASSWORD 'password123';
 2. **create both development and testing db**
 
 ```sh
-CREATE DATABASE DAF;
-CREATE DATABASE DAF_test;
+CREATE DATABASE daf;
+CREATE DATABASE daf_test;
 ```
 
 3. **grant all privileges on both databases**
 
 ```sh
-\c DAF;
+\c daf;
 GRANT ALL PRIVILEGES ON DATABASE DAF To daf_user;
-\c DAF_test 
+\c daf_test 
 GRANT ALL PRIVILEGES ON DATABASE DAF_test To daf_user;
 ```
 
@@ -99,11 +106,11 @@ nano .env
 # .env
 APP_PORT=3000
 POSTGRES_HOST=localhost
-POSTGRES_USER=shop_user
-POSTGRES_DB=shop
+POSTGRES_USER=daf_user
+POSTGRES_DB=daf
 POSTGRES_PASSWORD=password123
-POSTGRES_TEST_DB=shop_test
-ENV=test
+POSTGRES_TEST_DB=daf_test
+ENV=dev
 BCRYPT_PASS=thisissupersecretpassword
 SALT_ROUNDS=10
 PEPPER=password
@@ -114,20 +121,13 @@ JWT_SECRET_KEY=thisissupersecretpassword
 `5432`
 - port of the backend:
 the server runs <a href="http://localhost:3000">localhost</a>
-- package installation instructions
 
 ## Running application
 
-- to run on compiled files
+- to run the application
 
 ```sh
 npm run dev
-```
-
-- to run on typescript files
-
-```sh
-npm run start:dev
 ```
 
 ## Running Tests
@@ -140,17 +140,22 @@ To run tests, you need only two steps
 export ENV=test
 ```
 
-2. Run testing command, which will build the project and run the tests, this step is so important because `jasmine` tests the compiled js code
-
-```sh
-npm run build-test
-```
-
-or simple run
+2. Run testing command, which will set the ENV to test if you've forgotten to do the first step, and will run the testing database migrations, then running the test suits
 
 ```sh
 npm run test
 ```
+
+## Avaiable scripts
+
+```sh
+npm run migrate # running testing migrations
+npm run jasmine # running jasmine for testing
+npm run migrate-down # down the migrations
+npm run dev # run the application
+```
+
+## Tests passed
 
 ## Logs
 
@@ -160,4 +165,4 @@ npm run test
 - [x] :rocket: create order
 - [x] :rocket: get user order
 - [x] :rocket: add product to order
-- [ ] :rocket: setup testing
+- [x] :rocket: setup testing
