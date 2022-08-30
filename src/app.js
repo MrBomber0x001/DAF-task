@@ -20,6 +20,10 @@ app.use(morgan('short'));
 
 // Routes
 
+app.get('/', (req, res, next) => {
+    res.status(200).send(`working`);
+})
+
 orderRoutes(app);
 authRoutes(app);
 productRoutes(app);
@@ -33,3 +37,6 @@ app.use((err, req, res, next) => {
 app.listen(PORT, () => {
     console.log(`server is running`);
 })
+
+
+module.exports = app;

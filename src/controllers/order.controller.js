@@ -59,12 +59,15 @@ module.exports = class Order {
             throw new Error(error);
         }
     }
-    async index() {
 
-    }
-
-    async show() {
-
+    async updateStatus(status, orderId) {
+        try {
+            const conn = await Client.connect();
+            const sql = `UPDATE orders SET status=$1 WHERE id=$2 RETURNING *`;
+            const result = await conn.query(sql, [status, orderId]);
+        } catch (error) {
+            throw new Error(error);
+        }
     }
 }
 
