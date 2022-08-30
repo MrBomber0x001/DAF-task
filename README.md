@@ -167,3 +167,5 @@ npm run dev # run the application
 - [x] :rocket: get user order
 - [x] :rocket: add product to order
 - [x] :rocket: setup testing
+  - [x] Unit testing
+  - [x] Integration testing
