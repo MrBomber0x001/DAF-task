@@ -158,6 +158,8 @@ npm run dev # run the application
 
 ## Tests passed ✅
 
+![](./screenshots/testing.PNG)
+
 ## Logs
 
 - [x] :rocket: Signup
